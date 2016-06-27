@@ -1,26 +1,74 @@
+This project sets up 3 micro-services on Kafa using nodejs.
+
+The services:
+Insert DNS record into an index and a graph (Elastic Search and TODO ArangoDB).
+Insert ClientIP records into an index and a graph (Elastic Search and TODO ArangoDB).
+TODO Aggregate Web Site vists by MSISDN -> Times visited, Time of Day, In the last day, In the last week.
+
+Required:
+Nodejs
+Kafka
+Elastic Search
+Kibana
+ArangoDB
+
+Setting up the required packages -> To make it easy I use HomeBrew. If you don't have HomeBrew do this:
+(you'll need Ruby installed on your machine. It should be there. If it isn't it's part of xcode).
+
+$/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+Installing -
+$ brew install node
+$ brew install kafka
+$ brew install elasticsearch
+$ brew install kibana
+$ brew install arangodb
+
+TODO add node modules from Github
+
+Setting up the environment:
+You'll need some nodejs packages (sdks / clients) to make this work. Since you have node installed from above, do this:
+
+$ npm install kafka-node
+$ npm install elasticsearch
+$ npm install arnagojs
+------------------------------------------------------
+
+Start Kafka
+
 Kafka:
 $ zkserver start
 $ kafka-server-start.sh /usr/local/etc/kafka/server.properties
+(This is an interactive process so open another Terminal for the rest of the commands)
 
+Don't start these but make note of them. You can use these from the console for testing.
 Console Producer
-$ kafka-console-producer.sh --broker-list localhost:9092 --topic test
+$ kafka-console-producer.sh --broker-list localhost:9092 --topic DNSRecord
 
 Console Consumer
-$ kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+$ kafka-console-consumer.sh --zookeeper localhost:2181 --topic DNSRecord --from-beginning
 ---------------------------------
 
-Elastic Search
-$elsticsearch
+Start Elastic Search
 
-Kibana
+$ elsticsearch
+
+Start Kibana
+
 $kibana
 
+---------------------------------
+
+Start ArangoDB
+$ /usr/local/opt/arangodb/sbin/arangod
+
+http://localhost:8529
+TODO start node modules
 
 
-
-
+----------------------------------
 
 Scratch:
 
-ID:
+This is some test JSON that can be cut and pasted into the console Kafka producer.
 {"name":"John Smith","age":42,"confirmed":true,"join_date":    "2014-06-01","home": {"lat":      51.5, "lon":      0.1    },    "accounts": [ {        "type": "facebook","id":   "johnsmith"}, {"type": "twitter", "id":   "johnsmith"}]}

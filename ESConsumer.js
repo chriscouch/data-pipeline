@@ -30,7 +30,6 @@ var kafka = require('kafka-node'),
 //Wait for messages on the Topic
 consumer.on('message', function (message){
     var msgconvert = message.value
-
 //Insert the kafka message value into the index
     esclient.index({
         index: indexName,

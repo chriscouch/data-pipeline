@@ -72,3 +72,15 @@ Scratch:
 
 This is some test JSON that can be cut and pasted into the console Kafka producer.
 {"name":"John Smith","age":42,"confirmed":true,"join_date":    "2014-06-01","home": {"lat":      51.5, "lon":      0.1    },    "accounts": [ {        "type": "facebook","id":   "johnsmith"}, {"type": "twitter", "id":   "johnsmith"}]}
+
+For file generation
+[
+  '{{repeat(1500)}}',
+  {
+    time: '{{date(new Date(2016, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
+    clientIP: '10.10.10.{{integer(1,15)}}',
+    query: 'www.{{random("captain", "bar", "torpedo", "commercial", "shotgun", "needle", "famous", "clam", "rum", "taste", "direct", "degrading", "decipherer", "blindness", "architect", "camel", "drops", "dolphins", "blink", "bigwig")}}.com'
+  }
+]
+
+IP addesses are between 10.10.10.1 and .15.

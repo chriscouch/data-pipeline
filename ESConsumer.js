@@ -35,10 +35,14 @@ consumer.on('message', function (message){
         index: indexName,
         type: indexName,
         body: msgconvert
-    }, function (error, response){})
+    }, handleInsertResponse)
 })
 
-
+function handleInsertResponse(error, response){
+    if (error){
+        console.log('Error -> ' + error)
+    }
+}
 
 
 

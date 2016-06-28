@@ -31,7 +31,7 @@ producer.on('ready', function () {
 })
 
 //The callback for each message sent. Check for an error object, if it exists log it to the screen.
-function handleKResponse (err, date){
+function handleKResponse (err, data){
     if (err) {
         console.log('ERROR -> '+ err)
     }
